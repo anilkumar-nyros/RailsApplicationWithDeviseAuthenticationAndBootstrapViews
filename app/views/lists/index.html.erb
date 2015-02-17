@@ -1,0 +1,51 @@
+
+
+<h1>Listing Lists</h1>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Address</th>
+      <th>No Of openings</th>
+      <th>Area</th>
+      <th>Category</th>
+      <th>Walkin Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+     <td><%= list.list_name %></td>
+        
+       
+        <td><%= list.address %></td>
+        <% a=Area.where(:id =>list.area_id)%>
+         <% a.each do |x| %>
+         <% @area_name=x.name %>
+         <% end%>
+
+     
+        
+        <td><%= list.no_of_openings %></td>
+        <td><%= @area_name %></td>
+        <% a=Category.where(:id =>list.categories_id)%>
+         <% a.each do |x| %>
+         <% @categories_name=x.name %>
+         <% end%>
+         <td><%= @categories_name %></td>
+         <td><%= list.walkin_date %></td>
+                 <td><%= link_to 'Show', list,class: "btn btn-success" %></td>
+        <td><%= link_to raw('<i class="glyphicon glyphicon-edit"></i>'), edit_list_path(list),:class => 'btn btn-info' %></td>
+        <td><%= link_to raw('<i class="glyphicon glyphicon-trash"></i>'), list, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<i class="glyphicon glyphicon-display"></i>
+<center><%= link_to 'Create New List', new_list_path,class: "btn btn-link" %>
+</center>

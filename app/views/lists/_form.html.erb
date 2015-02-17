@@ -1,0 +1,77 @@
+<%= form_for(@list) do |f| %>
+  <% if @list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+      <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+   <div class="field">
+     <div class="col-xs-6 col-md-8"> <%= f.label :area_name  %><br></div>
+     <div class="col-xs-6 col-md-8"> <%= collection_select(:list ,:area_id,  Area.all,  :id, :name,prompt: "Select Area") %> </div>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="field" style="margin-top:20px">
+  <div class="col-xs-6 col-md-8"> <%= f.label :list_name  %>(Company Name)<br></div>
+  <div class="col-xs-6 col-md-8"> <%= f.text_field :list_name,class: "form-control" %>
+  </div>
+  </div>
+  </div>
+   <div class="form-group">
+   <div class="field" style="margin-top:20px">
+  <div class="col-xs-6 col-md-8"> <%= f.label :address  %><br></div>
+  <div class="col-xs-6 col-md-8"> <%= f.text_area :address,class: "form-control" %>
+  </div>
+  </div>
+  </div>
+ <div class="form-group">
+   <div class="field" style="margin-top:20px">
+  <div class="col-xs-6 col-md-8"> <%= f.label  :no_of_openings  %><br></div>
+  <div class="col-xs-6 col-md-8"> <%= f.text_field  :no_of_openings,class: "form-control" %>
+  </div>
+  </div>
+  </div>
+  <div class="form-group">
+   <div class="field">
+     <div class="col-xs-6 col-md-8"> <%= f.label :category  %><br></div>
+     <div class="col-xs-6 col-md-8"> <%= collection_select(:list ,:categories_id,  Category.all,  :id, :name,prompt: "Select Category")  %> </div>
+   </div>
+  </div>
+  <div class="form-group">
+
+   <div class="field">
+
+
+     <div class="col-xs-6 col-md-8"> <%= f.label :walkin_date  %><br></div>
+     <div class="col-xs-6 col-md-8">  <%= f.date_field :walkin_date,:prompt => true  %> </div>
+
+   </div>
+  </div>
+   <div class="col-xs-6 col-md-8"> <%= f.label :Qualifications  %><br></div>
+   <div class="col-xs-6 col-md-8">
+  
+    <% for qualification in Qualification.all %>
+       <%= render text:qualification.id  %>  
+      <tr>
+        
+        <td><%= check_box_tag "list[qualification_ids][]", qualification.id, @list.qualifications.include?(qualification) %></td>
+       <td><%= qualification.name %></td>
+      </tr>
+      
+    <% end %>
+
+    <tr>
+    </div>
+   <div class="col-xs-6 col-md-8">
+   <br>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary btn-lg btn-block"  %>
+  </div></div>
+
+<% end %>

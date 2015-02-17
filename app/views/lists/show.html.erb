@@ -1,0 +1,7 @@
+<ul>
+  <% @list.qualifications.each do |qualification| %>
+    <li><%= qualification.name %></li>
+  <% end %>
+</ul>
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>

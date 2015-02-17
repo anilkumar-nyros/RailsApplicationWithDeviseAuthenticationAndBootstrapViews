@@ -1,0 +1,50 @@
+
+<h1>Area</h1>
+
+<table class="table table-condensed">
+  <tr>
+  <th> Name</th>
+  <th>State</th>
+  </tr>
+  <tr>
+    <td><%= @area.name %></td>
+    <td><%= @area.state %></td>
+  </tr>
+  </table>
+
+
+<% @a = @area.lists %>
+<% if !@a.blank? %>
+   
+   
+  <h1>Recruitments</h1>
+<table class="table table-condensed">
+<tr>
+	<th> Company_name</th>
+	<th>Address</th>
+	<th>No of Openings</th>
+  <th>Category</th>
+  <th>Walk in Date</th>
+</tr>
+ <% @a.each do |list| %>
+      <tr>
+       
+        <td><%= list.list_name %></td>
+        
+        <td><%= list.address %></td>
+       
+        <td><%= list.no_of_openings %></td>
+        <% a=Category.where(:id =>list.categories_id)%>
+         <% a.each do |x| %>
+         <% @categories_name=x.name %>
+         <td><%= @categories_name %></td>
+         <% end%>
+         <td><%= list.walkin_date %></td>
+      </tr>
+    <% end %>
+    </table>
+
+<% end %>
+
+ 
+<center><%= link_to 'Back To Areas', areas_path %>

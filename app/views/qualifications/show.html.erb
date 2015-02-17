@@ -1,0 +1,38 @@
+
+
+<p>
+  <strong>Qualification Name:</strong>
+  <%= @qualification.name %>
+</p>
+<!-- 
+<%= link_to 'Edit', edit_qualification_path(@qualification) %> |
+<%= link_to 'Back', qualifications_path %> -->
+   <table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Address</th>
+       <th>No Of openings</th>
+     
+      <!-- <th>Category</th> -->
+      <th>Walkin Date</th>
+      <th>Area</th>
+    </tr>
+  </thead>
+ <% @qualification.lists.each do |list| %>
+  <tr>
+         <td><%= list.list_name %></td>
+     
+          <td><%= list.address %></td>
+          <td><%= list.no_of_openings %></td>
+          <td><%= list.walkin_date %></td>
+  
+         <% a=Area.where(:id =>list.area_id)%>
+         <% a.each do |x| %>
+         <% @area_name=x.name %>
+         <% end%>
+          <td><%=  @area_name %></td>
+<% end %>
+</tr>
+</table>
+<center> <%= link_to 'Back', qualifications_path %></center> 
