@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'devise'
+gem 'pg'
 gem 'devise-bootstrap-views'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bootstrap-datepicker-rails'
