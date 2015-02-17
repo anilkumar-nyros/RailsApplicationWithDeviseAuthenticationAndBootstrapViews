@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 20150210072135) do
     t.integer  "area_id",        limit: 4
     t.string   "list_name",      limit: 255
     t.string   "address",        limit: 255
-    t.string   "no_of_openings", limit: 255
+    
     t.integer  "categories_id",  limit: 4
-    t.date     "walkin_date"
+   
   end
 
   add_index "lists", ["area_id"], name: "index_lists_on_area_id", using: :btree
